@@ -1,0 +1,116 @@
+---
+// src/components/FinalCTA.astro
+import Icon from './Icon.astro';
+---
+
+<section id="final-cta" class="py-20 relative overflow-hidden">
+  <!-- Dynamic Background -->
+  <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-pink-900"></div>
+  <div class="absolute inset-0 bg-gray-900/80"></div>
+  
+  <!-- Animated Background Elements -->
+  <div class="absolute inset-0 opacity-30">
+    <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-500/20 rounded-full blur-xl animate-pulse"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-40 h-40 bg-purple-500/20 rounded-full blur-xl animate-pulse" style="animation-delay: 1s;"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-pink-500/20 rounded-full blur-xl animate-pulse" style="animation-delay: 2s;"></div>
+  </div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="max-w-4xl mx-auto text-center">
+      
+      <!-- Main CTA Content -->
+      <div id="cta-content">
+        <h2 id="cta-title" class="text-5xl md:text-6xl font-bold mb-8 opacity-0 gsap-ready">
+          Prêt à construire
+          <span class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+            le futur ?
+          </span>
+        </h2>
+        
+        <p id="cta-subtitle" class="text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed opacity-0 gsap-ready">
+          Rejoignez la révolution de l'apprentissage IA. Soyez parmi les premiers à découvrir 
+          une nouvelle façon de maîtriser les technologies qui façonnent demain.
+        </p>
+
+        <!-- Statistics -->
+        <div id="cta-stats" class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 opacity-0 gsap-ready">
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-2">
+              10K+
+            </div>
+            <div class="text-gray-400">Inscriptions en attente</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
+              95%
+            </div>
+            <div class="text-gray-400">Taux de satisfaction</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent mb-2">
+              24/7
+            </div>
+            <div class="text-gray-400">Accès immédiat</div>
+          </div>
+        </div>
+
+        <!-- CTA Form -->
+        <div id="cta-form" class="max-w-lg mx-auto opacity-0 gsap-ready">
+          <form class="space-y-4">
+            <div class="flex flex-col sm:flex-row gap-4">
+              <input 
+                type="email" 
+                placeholder="Votre email" 
+                class="flex-1 px-8 py-4 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 outline-none transition-all duration-300 text-white placeholder-gray-300 text-lg"
+                required
+              />
+              <button 
+                type="submit"
+                class="px-10 py-4 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 hover:from-blue-600 hover:via-purple-700 hover:to-pink-700 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl whitespace-nowrap"
+              >
+                Commencer maintenant
+              </button>
+            </div>
+            
+            <p class="text-sm text-gray-400 mt-4">
+              🔒 Vos données sont protégées. Aucun spam, promis.
+            </p>
+          </form>
+        </div>
+
+        <!-- Trust Indicators -->
+        <div id="trust-indicators" class="mt-12 flex flex-wrap justify-center items-center gap-8 opacity-0 gsap-ready">
+          <div class="flex items-center space-x-2 text-gray-400">
+            <Icon name="shield" class="w-5 h-5 text-green-500" />
+            <span>Sécurisé SSL</span>
+          </div>
+          <div class="flex items-center space-x-2 text-gray-400">
+            <Icon name="lock" class="w-5 h-5 text-blue-500" />
+            <span>Certifié RGPD</span>
+          </div>
+          <div class="flex items-center space-x-2 text-gray-400">
+            <Icon name="star" class="w-5 h-5 text-yellow-500" />
+            <span>4.9/5 étoiles</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { buttonHoverEffect, createTimeline } from '../utils/animations';
+  
+  // Animation séquentielle du CTA
+  createTimeline('#cta-content', [
+    { selector: '#cta-title', animation: 'scaleIn', delay: 0.5 },
+    { selector: '#cta-subtitle', animation: 'fadeInUp', delay: 0.3 },
+    { selector: '#cta-stats', animation: 'fadeInUp', delay: 0.2 },
+    { selector: '#cta-form', animation: 'scaleIn', delay: 0.1 },
+    { selector: '#trust-indicators', animation: 'fadeInUp', delay: 0.1 }
+  ]);
+  
+  // Effet de hover sur le bouton
+  buttonHoverEffect('#cta-form button[type="submit"]');
+</script>

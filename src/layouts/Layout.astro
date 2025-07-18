@@ -1,22 +1,22 @@
+---
+import AnimationProvider from '../components/AnimationProvider.astro';
+import '../styles/tailwind.css';
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Gadol - L'IA enfin à votre portée</title>
+		<meta name="description" content="Gadol transforme l'apprentissage de l'Intelligence Artificielle en une expérience visuelle et intuitive. Formation en ligne nouvelle génération." />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 	</head>
-	<body>
+	<body class="bg-neutral-900 text-white overflow-x-hidden">
 		<slot />
+		<AnimationProvider />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

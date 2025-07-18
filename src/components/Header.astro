@@ -1,0 +1,26 @@
+---
+// src/components/Header.astro
+---
+
+<header id="header" class="fixed top-0 w-full z-50 transition-all duration-300 bg-neutral-900/80 backdrop-blur-sm">
+  <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <div class="flex items-center">
+      <h2 class="text-2xl font-bold bg-gradient-to-r from-primary-400 to-secondary-500 bg-clip-text text-transparent">
+        Gadol
+      </h2>
+    </div>
+    
+    <!-- CTA Button -->
+    <button class="bg-gradient-to-r from-primary-500 to-secondary-600 hover:from-primary-600 hover:to-secondary-700 px-6 py-2 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+      Commencer maintenant
+    </button>
+  </div>
+</header>
+
+<script>
+  import { headerScrollEffect } from '../utils/animations';
+  
+  // Effet de scroll sur le header
+  headerScrollEffect();
+</script>

@@ -1,0 +1,103 @@
+---
+// src/components/Features.astro
+import Icon from './Icon.astro';
+---
+
+<section class="py-20">
+  <div class="container mx-auto px-6">
+    <!-- Section Title -->
+    <div class="text-center mb-16">
+      <h2 id="features-title" class="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent opacity-0 gsap-ready">
+        Conçu pour votre cerveau.
+      </h2>
+      <p id="features-subtitle" class="text-xl text-gray-300 max-w-2xl mx-auto opacity-0 gsap-ready">
+        Chaque aspect de Gadol a été pensé pour optimiser votre apprentissage et maximiser votre engagement.
+      </p>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      
+      <!-- Feature 1: Apprentissage Visuel -->
+      <div class="feature-card group cursor-pointer opacity-0 gsap-ready">
+        <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 h-full border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+          <!-- Icon -->
+          <div class="w-16 h-16 mb-6 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
+            <Icon name="eye" class="w-8 h-8 text-white" />
+          </div>
+          
+          <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors duration-300">
+            Apprentissage Visuel
+          </h3>
+          
+          <p class="text-gray-300 leading-relaxed">
+            Nos cours sont co-créés avec des motion designers pour transformer les concepts complexes 
+            de l'IA en animations claires et mémorables qui parlent à votre cerveau.
+          </p>
+          
+          <!-- Subtle animation indicator -->
+          <div class="mt-6 w-12 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+        </div>
+      </div>
+
+      <!-- Feature 2: Parcours Intelligents -->
+      <div class="feature-card group cursor-pointer opacity-0 gsap-ready">
+        <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 h-full border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+          <!-- Icon -->
+          <div class="w-16 h-16 mb-6 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
+            <Icon name="chart" class="w-8 h-8 text-white" />
+          </div>
+          
+          <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-purple-400 transition-colors duration-300">
+            Parcours Intelligents
+          </h3>
+          
+          <p class="text-gray-300 leading-relaxed">
+            Notre IA analyse votre progression, identifie vos points forts et difficultés, 
+            puis vous recommande les modules les plus pertinents pour optimiser votre apprentissage.
+          </p>
+          
+          <!-- Subtle animation indicator -->
+          <div class="mt-6 w-12 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+        </div>
+      </div>
+
+      <!-- Feature 3: Interactivité Maximale -->
+      <div class="feature-card group cursor-pointer opacity-0 gsap-ready">
+        <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 h-full border border-gray-700/50 hover:border-green-500/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+          <!-- Icon -->
+          <div class="w-16 h-16 mb-6 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300">
+            <Icon name="magic" class="w-8 h-8 text-white" />
+          </div>
+          
+          <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-green-400 transition-colors duration-300">
+            Interactivité Maximale
+          </h3>
+          
+          <p class="text-gray-300 leading-relaxed">
+            Participez, expérimentez et testez vos connaissances directement dans le lecteur vidéo. 
+            Chaque cours devient une expérience interactive où vous êtes acteur de votre apprentissage.
+          </p>
+          
+          <!-- Subtle animation indicator -->
+          <div class="mt-6 w-12 h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  import { cardHoverEffect, fadeInUp, staggerCards } from '../utils/animations';
+  
+  // Animations des titres
+  fadeInUp('#features-title');
+  fadeInUp('#features-subtitle', 0.3);
+  
+  // Animation stagger des cartes
+  staggerCards('.feature-card');
+  
+  // Effets de hover sur les cartes
+  cardHoverEffect('.feature-card');
+</script>

@@ -1,0 +1,63 @@
+---
+// src/components/Footer.astro
+import Icon from './Icon.astro';
+---
+
+<footer class="bg-gray-900 border-t border-gray-800 py-12">
+  <div class="container mx-auto px-6">
+    <div class="flex flex-col md:flex-row items-center justify-between">
+      
+      <!-- Logo and Copyright -->
+      <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
+        <div class="flex items-center">
+          <h3 class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            Gadol
+          </h3>
+        </div>
+        <div class="text-gray-400 text-sm">
+          © 2025 Gadol. Tous droits réservés.
+        </div>
+      </div>
+      
+      <!-- Social Links -->
+      <div class="flex items-center space-x-6 mt-6 md:mt-0">
+        <!-- Twitter/X -->
+        <a 
+          href="#" 
+          class="text-gray-400 hover:text-white transition-colors duration-300 transform hover:scale-110"
+          aria-label="Suivez-nous sur X (Twitter)"
+        >
+          <Icon name="twitter" class="w-6 h-6" />
+        </a>
+        <!-- LinkedIn -->
+        <a 
+          href="#" 
+          class="text-gray-400 hover:text-white transition-colors duration-300 transform hover:scale-110"
+          aria-label="Suivez-nous sur LinkedIn"
+        >
+          <Icon name="linkedin" class="w-6 h-6" />
+        </a>
+        <!-- YouTube -->
+        <a 
+          href="#" 
+          class="text-gray-400 hover:text-white transition-colors duration-300 transform hover:scale-110"
+          aria-label="Suivez-nous sur YouTube"
+        >
+          <Icon name="youtube" class="w-6 h-6" />
+        </a>
+      </div>
+    </div>
+    
+    <!-- Additional Footer Links (Optional) -->
+    <div class="mt-8 pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-center md:justify-between text-sm text-gray-500">
+      <div class="flex flex-wrap items-center justify-center space-x-6 mb-4 md:mb-0">
+        <a href="#" class="hover:text-gray-300 transition-colors duration-300">Politique de confidentialité</a>
+        <a href="#" class="hover:text-gray-300 transition-colors duration-300">Conditions d'utilisation</a>
+        <a href="#" class="hover:text-gray-300 transition-colors duration-300">Contact</a>
+      </div>
+      <div class="text-center md:text-right">
+        <p>Fait avec ❤️ pour révolutionner l'apprentissage de l'IA</p>
+      </div>
+    </div>
+  </div>
+</footer>
