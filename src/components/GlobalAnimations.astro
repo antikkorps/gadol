@@ -1,0 +1,105 @@
+---
+// GlobalAnimations.astro - Centralise toutes les animations GSAP
+---
+
+<script>
+  import { GSAPAnimations } from '../utils/gsapAnimations.ts';
+
+  // Fonction d'initialisation globale des animations
+  function initAllAnimations() {
+    // Hero Section
+    if (document.querySelector('.hero-title')) {
+      GSAPAnimations.fadeInStagger(".hero-badge, .hero-title, .hero-subtitle, .hero-features, .hero-cta", {
+        trigger: ".hero-title",
+        start: "top 90%",
+        duration: 1.2,
+        stagger: 0.2,
+        toggleActions: "play none none none"
+      });
+    }
+
+    // Features Section
+    if (document.querySelector('#features')) {
+      GSAPAnimations.fadeInStagger(".features-title, .features-subtitle", {
+        trigger: "#features",
+        start: "top 80%",
+        duration: 1,
+        stagger: 0.2,
+        toggleActions: "play none none reverse"
+      });
+
+      GSAPAnimations.fadeInUp(".feature-card", {
+        trigger: "#features",
+        start: "top 70%",
+        duration: 0.8,
+        stagger: 0.15,
+        toggleActions: "play none none reverse"
+      });
+    }
+
+    // Showcase Section
+    if (document.querySelector('#showcase')) {
+      GSAPAnimations.fadeInStagger(".showcase-title, .showcase-subtitle", {
+        trigger: "#showcase",
+        start: "top 80%",
+        duration: 1,
+        stagger: 0.2,
+        toggleActions: "play none none reverse"
+      });
+
+      GSAPAnimations.fadeInUp(".showcase-card", {
+        trigger: "#showcase-grid",
+        start: "top 80%",
+        duration: 0.8,
+        stagger: 0.2,
+        toggleActions: "play none none reverse"
+      });
+
+      // 3D Tilt Effect for showcase cards
+      GSAPAnimations.cardTilt3D(".showcase-card");
+    }
+
+    // Problem-Solution Section
+    if (document.querySelector('#problem-solution')) {
+      GSAPAnimations.fadeInUp(".problem-section", {
+        trigger: "#problem-solution",
+        start: "top 75%",
+        duration: 1,
+        toggleActions: "play none none reverse"
+      });
+
+      GSAPAnimations.fadeInUp(".solution-section", {
+        trigger: "#problem-solution",
+        start: "top 70%",
+        duration: 1,
+        delay: 0.3,
+        toggleActions: "play none none reverse"
+      });
+    }
+
+    // Final CTA Section
+    if (document.querySelector('#final-cta')) {
+      GSAPAnimations.fadeInStagger(".cta-title, .cta-subtitle, .cta-stats, .cta-form, .cta-trust", {
+        trigger: "#final-cta",
+        start: "top 80%",
+        duration: 1,
+        stagger: 0.2,
+        toggleActions: "play none none reverse"
+      });
+    }
+
+    // Initialize scroll animations après toutes les configurations
+    GSAPAnimations.initScrollAnimations();
+  }
+
+  // Un seul écouteur DOMContentLoaded pour toute l'application
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAllAnimations);
+  } else {
+    // Si le DOM est déjà chargé
+    initAllAnimations();
+  }
+
+  // Gestion des changements de page pour les SPAs (optionnel)
+  document.addEventListener('astro:page-load', initAllAnimations);
+</script>

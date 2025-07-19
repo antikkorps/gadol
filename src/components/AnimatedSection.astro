@@ -1,0 +1,93 @@
+---
+export interface Props {
+  class?: string;
+  id?: string;
+  animationType?: 'fadeInUp' | 'fadeInStagger' | 'none';
+  trigger?: string;
+  start?: string;
+  duration?: number;
+  stagger?: number;
+  enable3DTilt?: boolean;
+}
+
+const {
+  class: className = '',
+  id,
+  animationType = 'fadeInUp',
+  trigger,
+  start = 'top 80%',
+  duration = 0.8,
+  stagger = 0.2,
+  enable3DTilt = false,
+  ...rest
+} = Astro.props;
+
+const animationConfig = {
+  animationType,
+  trigger: trigger || `#${id}`,
+  start,
+  duration,
+  stagger,
+  enable3DTilt
+};
+---
+
+<section 
+  class={className} 
+  id={id}
+  data-animation-config={JSON.stringify(animationConfig)}
+  {...rest}
+>
+  <slot />
+</section>
+
+<script>
+  import { GSAPAnimations } from '../utils/gsapAnimations.ts';
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const animatedSections = document.querySelectorAll('[data-animation-config]');
+    
+    animatedSections.forEach(section => {
+      const configAttr = section.getAttribute('data-animation-config');
+      if (!configAttr) return;
+      
+      try {
+        const config = JSON.parse(configAttr);
+        const sectionId = section.id;
+        
+        if (!sectionId || config.animationType === 'none') return;
+        
+        // Apply animations based on type
+        switch (config.animationType) {
+          case 'fadeInUp':
+            GSAPAnimations.fadeInUp(`#${sectionId}`, {
+              trigger: config.trigger,
+              start: config.start,
+              duration: config.duration
+            });
+            break;
+            
+          case 'fadeInStagger':
+            GSAPAnimations.fadeInStagger(`#${sectionId}`, {
+              trigger: config.trigger,
+              start: config.start,
+              duration: config.duration,
+              stagger: config.stagger
+            });
+            break;
+        }
+        
+        // Apply 3D tilt if enabled
+        if (config.enable3DTilt) {
+          GSAPAnimations.cardTilt3D(`#${sectionId} .showcase-card`);
+        }
+        
+      } catch (error) {
+        console.warn('Error parsing animation config:', error);
+      }
+    });
+    
+    // Initialize scroll animations
+    GSAPAnimations.initScrollAnimations();
+  });
+</script>

@@ -1,348 +1,371 @@
 // src/utils/animations.ts
 
-interface GSAPInstance {
-  registerPlugin: (plugin: any) => void
-  fromTo: (target: string | Element, fromVars: any, toVars: any) => any
-  to: (target: string | Element, vars: any) => any
-  set: (target: string | Element, vars: any) => void
-  timeline: (vars?: any) => any
-}
-
-interface ScrollTriggerInstance {
-  create: (vars: any) => any
-}
-
 declare global {
   interface Window {
-    gsap: GSAPInstance
-    ScrollTrigger: ScrollTriggerInstance
+    gsap: any
+    ScrollTrigger: any
   }
 }
 
-// Vérifier si GSAP est disponible
-const isGSAPAvailable = (): boolean => {
-  return typeof window !== "undefined" && typeof window.gsap !== "undefined"
+// Système de fallback pour les éléments si GSAP n'est pas disponible
+export const setupFallback = () => {
+  console.log("Activation du fallback - affichage du contenu")
+
+  // Fallback immédiat pour le Hero
+  const heroElements = document.querySelectorAll("#hero-title, #hero-subtitle, #hero-cta")
+  heroElements.forEach((element) => {
+    if (element instanceof HTMLElement) {
+      element.style.opacity = "1"
+      element.style.transform = "none"
+    }
+  })
+
+  // Fallback pour tous les autres éléments
+  setTimeout(() => {
+    const elements = document.querySelectorAll(".gsap-ready")
+    elements.forEach((element) => {
+      if (element instanceof HTMLElement) {
+        element.style.opacity = "1"
+        element.style.transform = "none"
+      }
+    })
+  }, 100)
 }
 
-// Initialiser GSAP et ScrollTrigger
-const initGSAP = (): {
-  gsap: GSAPInstance
-  ScrollTrigger: ScrollTriggerInstance
-} | null => {
-  if (!isGSAPAvailable()) {
-    return null
+// Fonction d'initialisation globale des animations
+export const initAnimations = () => {
+  console.log("Tentative d'initialisation des animations")
+
+  // Vérifier si GSAP est disponible
+  if (typeof window === "undefined" || !window.gsap) {
+    console.log("GSAP non disponible, utilisation du fallback")
+    setupFallback()
+    return
   }
 
   const gsap = window.gsap
   const ScrollTrigger = window.ScrollTrigger
 
-  gsap.registerPlugin(ScrollTrigger)
+  // Enregistrer ScrollTrigger si disponible
+  if (ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger)
+  }
 
-  return { gsap, ScrollTrigger }
-}
+  console.log("GSAP initialisé, démarrage des animations")
 
-// Animation de fade-in avec translation Y
-export const fadeInUp = (selector: string, delay: number = 0, duration: number = 1) => {
-  const gsapInstance = initGSAP()
-  if (!gsapInstance) return
+  try {
+    // Animations du Hero (immédiates)
+    console.log("Animation du Hero...")
+    const heroTimeline = gsap.timeline()
+    heroTimeline
+      .fromTo(
+        "#hero-title",
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
+        0.2
+      )
+      .fromTo(
+        "#hero-subtitle",
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
+        0.4
+      )
+      .fromTo(
+        "#hero-cta",
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
+        0.6
+      )
 
-  const { gsap, ScrollTrigger } = gsapInstance
-
-  gsap.fromTo(
-    selector,
-    {
-      opacity: 0,
-      y: 50,
-    },
-    {
-      opacity: 1,
-      y: 0,
-      duration,
-      delay,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: selector,
-        start: "top 80%",
-      },
-    }
-  )
-}
-
-// Animation de fade-in avec translation X (gauche)
-export const fadeInLeft = (selector: string, delay: number = 0, duration: number = 1) => {
-  const gsapInstance = initGSAP()
-  if (!gsapInstance) return
-
-  const { gsap, ScrollTrigger } = gsapInstance
-
-  gsap.fromTo(
-    selector,
-    {
-      opacity: 0,
-      x: -100,
-    },
-    {
-      opacity: 1,
-      x: 0,
-      duration,
-      delay,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: selector,
-        start: "top 80%",
-      },
-    }
-  )
-}
-
-// Animation de fade-in avec translation X (droite)
-export const fadeInRight = (
-  selector: string,
-  delay: number = 0,
-  duration: number = 1
-) => {
-  const gsapInstance = initGSAP()
-  if (!gsapInstance) return
-
-  const { gsap, ScrollTrigger } = gsapInstance
-
-  gsap.fromTo(
-    selector,
-    {
-      opacity: 0,
-      x: 100,
-    },
-    {
-      opacity: 1,
-      x: 0,
-      duration,
-      delay,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: selector,
-        start: "top 80%",
-      },
-    }
-  )
-}
-
-// Animation de scale avec fade-in
-export const scaleIn = (selector: string, delay: number = 0, duration: number = 1.2) => {
-  const gsapInstance = initGSAP()
-  if (!gsapInstance) return
-
-  const { gsap, ScrollTrigger } = gsapInstance
-
-  gsap.fromTo(
-    selector,
-    {
-      opacity: 0,
-      scale: 0.8,
-      y: 100,
-    },
-    {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      duration,
-      delay,
-      ease: "back.out(1.7)",
-      scrollTrigger: {
-        trigger: selector,
-        start: "top 80%",
-      },
-    }
-  )
-}
-
-// Animation de stagger pour les cartes
-export const staggerCards = (selector: string, staggerDelay: number = 0.2) => {
-  const gsapInstance = initGSAP()
-  if (!gsapInstance) return
-
-  const { gsap, ScrollTrigger } = gsapInstance
-
-  gsap.fromTo(
-    selector,
-    {
-      opacity: 0,
-      y: 80,
-      scale: 0.8,
-    },
-    {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.8,
-      stagger: staggerDelay,
-      ease: "back.out(1.7)",
-      scrollTrigger: {
-        trigger: selector,
-        start: "top 80%",
-      },
-    }
-  )
-}
-
-// Animation de timeline pour les éléments séquentiels
-export const createTimeline = (
-  trigger: string,
-  elements: Array<{
-    selector: string
-    animation: "fadeInUp" | "fadeInLeft" | "fadeInRight" | "scaleIn"
-    delay?: number
-  }>
-) => {
-  const gsapInstance = initGSAP()
-  if (!gsapInstance) return
-
-  const { gsap, ScrollTrigger } = gsapInstance
-
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger,
-      start: "top 80%",
-    },
-  })
-
-  elements.forEach((element, index) => {
-    const delay = element.delay || index * 0.3
-
-    switch (element.animation) {
-      case "fadeInUp":
-        tl.fromTo(
-          element.selector,
-          { opacity: 0, y: 50 },
-          { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
-          `-=${0.5 - delay}`
-        )
-        break
-      case "fadeInLeft":
-        tl.fromTo(
-          element.selector,
-          { opacity: 0, x: -100 },
-          { opacity: 1, x: 0, duration: 0.8, ease: "power3.out" },
-          `-=${0.5 - delay}`
-        )
-        break
-      case "fadeInRight":
-        tl.fromTo(
-          element.selector,
-          { opacity: 0, x: 100 },
-          { opacity: 1, x: 0, duration: 0.8, ease: "power3.out" },
-          `-=${0.5 - delay}`
-        )
-        break
-      case "scaleIn":
-        tl.fromTo(
-          element.selector,
-          { opacity: 0, scale: 0.8, y: 40 },
-          { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "back.out(1.7)" },
-          `-=${0.5 - delay}`
-        )
-        break
-    }
-  })
-
-  return tl
-}
-
-// Animation du header au scroll
-export const headerScrollEffect = () => {
-  const gsapInstance = initGSAP()
-  if (!gsapInstance) return
-
-  const { ScrollTrigger } = gsapInstance
-
-  ScrollTrigger.create({
-    trigger: "body",
-    start: "100px top",
-    onToggle: (self: any) => {
-      const header = document.getElementById("header")
-      if (header) {
-        if (self.isActive) {
-          header.classList.add("bg-neutral-900/95", "shadow-lg")
-          header.classList.remove("bg-neutral-900/80")
-        } else {
-          header.classList.add("bg-neutral-900/80")
-          header.classList.remove("bg-neutral-900/95", "shadow-lg")
-        }
+    // Animations simples sans ScrollTrigger pour les tests
+    console.log("Animation des Features...")
+    gsap.fromTo(
+      ".feature-card",
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power3.out",
+        delay: 1, // Délai pour voir l'animation
       }
-    },
-  })
+    )
+
+    console.log("Animation des sections...")
+    gsap.fromTo(
+      "#problem-section",
+      { opacity: 0, x: -50 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: 1.5,
+      }
+    )
+
+    gsap.fromTo(
+      "#solution-section",
+      { opacity: 0, x: 50 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: 1.7,
+      }
+    )
+
+    gsap.fromTo(
+      "#video-player",
+      { opacity: 0, scale: 0.9 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 1.0,
+        ease: "back.out(1.7)",
+        delay: 2,
+      }
+    )
+
+    gsap.fromTo(
+      "#cta-title",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: 2.5,
+      }
+    )
+
+    gsap.fromTo(
+      "#cta-subtitle",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: 2.7,
+      }
+    )
+
+    gsap.fromTo(
+      "#cta-stats",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: 2.9,
+      }
+    )
+
+    gsap.fromTo(
+      "#cta-form",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: 3.1,
+      }
+    )
+
+    gsap.fromTo(
+      "#trust-indicators",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: 3.3,
+      }
+    )
+
+    // Effets de hover
+    setupHoverEffects()
+  } catch (error) {
+    console.error("Erreur lors de l'initialisation des animations:", error)
+    setupFallback()
+  }
 }
 
-// Animation de hover pour les boutons
-export const buttonHoverEffect = (selector: string) => {
-  const gsapInstance = initGSAP()
-  if (!gsapInstance) return
+// Configuration des effets de hover
+const setupHoverEffects = () => {
+  const gsap = window.gsap
 
-  const { gsap } = gsapInstance
-  const button = document.querySelector(selector)
+  console.log("Configuration des effets de hover...")
 
-  if (button) {
+  // Effet de hover pour les boutons
+  const buttons = document.querySelectorAll('#cta-form button[type="submit"]')
+  console.log("Boutons trouvés:", buttons.length)
+  buttons.forEach((button) => {
     button.addEventListener("mouseenter", () => {
-      gsap.to(button as Element, {
+      gsap.to(button, {
         scale: 1.05,
-        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
-        duration: 0.3,
+        duration: 0.2,
         ease: "power2.out",
+        overwrite: true,
       })
     })
 
     button.addEventListener("mouseleave", () => {
-      gsap.to(button as Element, {
+      gsap.to(button, {
         scale: 1,
-        boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
-        duration: 0.3,
+        duration: 0.2,
         ease: "power2.out",
+        overwrite: true,
       })
     })
-  }
-}
+  })
 
-// Animation de hover pour les cartes
-export const cardHoverEffect = (selector: string) => {
-  const gsapInstance = initGSAP()
-  if (!gsapInstance) return
+  // Effet de hover pour tous les boutons du Hero
+  const heroButtons = document.querySelectorAll('#hero-cta button[type="submit"]')
+  console.log("Boutons Hero trouvés:", heroButtons.length)
+  heroButtons.forEach((button) => {
+    button.addEventListener("mouseenter", () => {
+      gsap.to(button, {
+        scale: 1.05,
+        duration: 0.2,
+        ease: "power2.out",
+        overwrite: true,
+      })
+    })
 
-  const { gsap } = gsapInstance
+    button.addEventListener("mouseleave", () => {
+      gsap.to(button, {
+        scale: 1,
+        duration: 0.2,
+        ease: "power2.out",
+        overwrite: true,
+      })
+    })
+  })
 
-  document.querySelectorAll(selector).forEach((card) => {
+  // Effet de hover pour les cartes
+  const featureCards = document.querySelectorAll(".feature-card")
+  console.log("Cartes Features trouvées:", featureCards.length)
+  featureCards.forEach((card, index) => {
+    console.log(`Configuration de la carte ${index + 1}`)
+
+    const icon = card.querySelector(".w-16.h-16")
+    const title = card.querySelector("h3")
+    const indicator = card.querySelector(".mt-6.w-12.h-1")
+    const cardContent = card.querySelector(".bg-gray-800\\/50")
+
     card.addEventListener("mouseenter", () => {
-      const cardElement = card.querySelector(".bg-gray-800\\/50")
-      if (cardElement) {
-        gsap.to(cardElement as Element, {
-          scale: 1.02,
+      console.log(`Hover sur carte ${index + 1}`)
+
+      // Animation de la carte
+      gsap.to(card, {
+        y: -10,
+        scale: 1.02,
+        duration: 0.3,
+        ease: "power2.out",
+        overwrite: true,
+      })
+
+      // Animation de l'icône
+      if (icon) {
+        gsap.to(icon, {
+          rotation: 6,
           duration: 0.3,
           ease: "power2.out",
+          overwrite: true,
+        })
+      }
+
+      // Changement de couleur du titre
+      if (title) {
+        gsap.to(title, {
+          color: "#60A5FA", // blue-400
+          duration: 0.3,
+          ease: "power2.out",
+          overwrite: true,
+        })
+      }
+
+      // Animation de l'indicateur
+      if (indicator) {
+        gsap.to(indicator, {
+          scaleX: 1,
+          duration: 0.3,
+          ease: "power2.out",
+          overwrite: true,
+        })
+      }
+
+      // Changement de bordure
+      if (cardContent) {
+        gsap.to(cardContent, {
+          borderColor: "rgba(59, 130, 246, 0.5)", // blue-500/50
+          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+          duration: 0.3,
+          ease: "power2.out",
+          overwrite: true,
         })
       }
     })
 
     card.addEventListener("mouseleave", () => {
-      const cardElement = card.querySelector(".bg-gray-800\\/50")
-      if (cardElement) {
-        gsap.to(cardElement as Element, {
-          scale: 1,
+      console.log(`Sortie hover carte ${index + 1}`)
+
+      // Retour à la position normale de la carte
+      gsap.to(card, {
+        y: 0,
+        scale: 1,
+        duration: 0.3,
+        ease: "power2.out",
+        overwrite: true,
+      })
+
+      // Retour à la position normale de l'icône
+      if (icon) {
+        gsap.to(icon, {
+          rotation: 0,
           duration: 0.3,
           ease: "power2.out",
+          overwrite: true,
+        })
+      }
+
+      // Retour à la couleur normale du titre
+      if (title) {
+        gsap.to(title, {
+          color: "#FFFFFF", // white
+          duration: 0.3,
+          ease: "power2.out",
+          overwrite: true,
+        })
+      }
+
+      // Retour de l'indicateur
+      if (indicator) {
+        gsap.to(indicator, {
+          scaleX: 0,
+          duration: 0.3,
+          ease: "power2.out",
+          overwrite: true,
+        })
+      }
+
+      // Retour de la bordure
+      if (cardContent) {
+        gsap.to(cardContent, {
+          borderColor: "rgba(55, 65, 81, 0.5)", // gray-700/50
+          boxShadow: "none",
+          duration: 0.3,
+          ease: "power2.out",
+          overwrite: true,
         })
       }
     })
   })
-}
-
-// Fallback pour afficher le contenu si GSAP ne se charge pas
-export const setupFallback = () => {
-  setTimeout(() => {
-    const elements = document.querySelectorAll(".gsap-ready")
-    elements.forEach((el: Element) => {
-      const element = el as HTMLElement
-      if (element.style.opacity === "0" || element.style.opacity === "") {
-        element.style.opacity = "1"
-        element.style.transform = "translateY(0) scale(1)"
-      }
-    })
-  }, 2000)
 }

@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Layout>
+  <main class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center px-6">
+    <!-- Animated background elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full filter blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full filter blur-3xl animate-pulse animation-delay-2s"></div>
+      <div class="absolute top-3/4 left-3/4 w-48 h-48 bg-pink-500/10 rounded-full filter blur-3xl animate-pulse animation-delay-4s"></div>
+    </div>
+
+    <div class="relative z-10 text-center max-w-4xl mx-auto">
+      <!-- Logo/Title -->
+      <div class="mb-8">
+        <h1 class="text-6xl md:text-8xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-4">
+          Gadol
+        </h1>
+        <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+      </div>
+
+      <!-- Main message -->
+      <div class="mb-12">
+        <div class="inline-flex items-center px-4 py-2 rounded-full bg-orange-500/20 border border-orange-500/30 mb-6">
+          <Icon name="sparkles" class="w-4 h-4 text-orange-400 mr-2" />
+          <span class="text-orange-300 font-medium">Bientôt disponible</span>
+        </div>
+        
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+          La révolution de l'apprentissage IA
+          <span class="block text-gray-400 text-2xl md:text-3xl mt-2">arrive très bientôt</span>
+        </h2>
+        
+        <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          Victor Hugo, Marie Curie et Leonardo da Vinci préparent quelque chose d'extraordinaire. 
+          Une formation IA comme vous n'en avez jamais vue.
+        </p>
+      </div>
+
+      <!-- Features teaser -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+          <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <Icon name="theater" class="w-6 h-6 text-blue-400" />
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Formateurs Légendaires</h3>
+          <p class="text-gray-400 text-sm">Des personnages historiques animés par IA</p>
+        </div>
+        
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+          <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <Icon name="target" class="w-6 h-6 text-purple-400" />
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Formation Contextuelle</h3>
+          <p class="text-gray-400 text-sm">Adaptée à votre secteur professionnel</p>
+        </div>
+        
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+          <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <Icon name="lightning" class="w-6 h-6 text-green-400" />
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Résultats Rapides</h3>
+          <p class="text-gray-400 text-sm">Maîtrisez l'IA en 7 jours</p>
+        </div>
+      </div>
+
+      <!-- Notification signup -->
+      <div class="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm max-w-2xl mx-auto mb-12">
+        <h3 class="text-2xl font-bold text-white mb-4">Soyez les premiers informés</h3>
+        <p class="text-gray-300 mb-6">Recevez un accès prioritaire dès le lancement et un contenu exclusif en avant-première.</p>
+        
+        <form class="space-y-4">
+          <div class="flex flex-col sm:flex-row gap-4">
+            <input 
+              type="email" 
+              placeholder="Votre email professionnel" 
+              class="flex-1 px-6 py-4 rounded-2xl bg-white/10 border border-white/20 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 outline-none transition-all duration-300 text-white placeholder-gray-400"
+              required
+            />
+            <button 
+              type="submit"
+              class="px-8 py-4 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 hover:from-blue-600 hover:via-purple-700 hover:to-pink-700 rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl whitespace-nowrap"
+            >
+              Me notifier
+            </button>
+          </div>
+          
+          <div class="flex items-center justify-center space-x-6 text-xs text-gray-400 pt-2">
+            <div class="flex items-center space-x-1">
+              <Icon name="shield" class="w-3 h-3 text-green-500" />
+              <span>Données protégées</span>
+            </div>
+            <div class="flex items-center space-x-1">
+              <Icon name="lightning" class="w-3 h-3 text-yellow-500" />
+              <span>Accès prioritaire</span>
+            </div>
+            <div class="flex items-center space-x-1">
+              <Icon name="star" class="w-3 h-3 text-purple-500" />
+              <span>Contenu exclusif</span>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Back to home -->
+      <div class="text-center">
+        <a 
+          href="/" 
+          class="inline-flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-300"
+        >
+          <span>←</span>
+          <span>Retour à l'accueil</span>
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .animation-delay-2s {
+    animation-delay: 2s;
+  }
+  .animation-delay-4s {
+    animation-delay: 4s;
+  }
+</style>

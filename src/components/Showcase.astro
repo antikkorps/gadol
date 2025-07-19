@@ -1,219 +1,187 @@
 ---
-// src/components/Showcase.astro
 import Icon from './Icon.astro';
 ---
 
-<section class="py-20 bg-gradient-to-b from-gray-900 to-gray-800">
-  <div class="container mx-auto px-6">
-    
+<section id="showcase" class="relative overflow-hidden py-24 sm:py-32 bg-gray-900 text-white">
+  <!-- Animated Gradient Background -->
+  <div class="absolute inset-0 z-0">
+    <div class="absolute top-0 left-0 w-96 h-96 bg-blue-500/20 rounded-full filter blur-3xl animate-blob"></div>
+    <div class="absolute top-1/2 right-0 w-96 h-96 bg-purple-500/20 rounded-full filter blur-3xl animate-blob animation-delay-2000"></div>
+    <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-pink-500/20 rounded-full filter blur-3xl animate-blob animation-delay-4000"></div>
+  </div>
+
+  <div class="container mx-auto px-6 relative z-10">
     <!-- Section Header -->
     <div class="text-center mb-16">
-      <h2 id="showcase-title" class="text-4xl md:text-5xl font-bold mb-6 text-white opacity-0 gsap-ready">
-        Découvrez l'expérience
-        <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Gadol</span>
+      <h2 id="showcase-title" class="text-4xl md:text-5xl font-bold mb-6 showcase-title">
+        Vos formateurs légendaires
       </h2>
-      <p id="showcase-subtitle" class="text-xl text-gray-300 max-w-2xl mx-auto opacity-0 gsap-ready">
-        Plongez dans notre interface révolutionnaire où l'apprentissage devient une aventure visuelle.
+      <p id="showcase-subtitle" class="text-xl text-gray-300 max-w-3xl mx-auto showcase-subtitle">
+        Apprenez l'IA pratique avec les plus grandes figures de l'histoire, animées par l'intelligence artificielle.
       </p>
     </div>
 
-    <!-- Video Player Mockup -->
-    <div class="max-w-5xl mx-auto">
-      <div id="video-player" class="relative bg-gray-800 rounded-2xl overflow-hidden shadow-2xl transform scale-90 opacity-0 gsap-ready">
-        
-        <!-- Player Header -->
-        <div class="bg-gray-700 px-6 py-4 flex items-center justify-between">
-          <div class="flex items-center space-x-3">
-            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-            <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+    <!-- Interactive Grid -->
+    <div id="showcase-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Card 1: Victor Hugo -->
+      <div class="showcase-card group relative bg-gradient-to-br from-blue-500/5 to-cyan-500/5 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-sm transition-all duration-500 hover:border-blue-400/50 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2">
+        <div class="showcase-card-content relative">
+          <!-- Image Header with dramatic effect -->
+          <div class="relative h-48 overflow-hidden bg-gradient-to-br from-blue-500/20 to-cyan-500/20">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
+            <img 
+              src="/images/illustrations/Victor_Hugo.webp" 
+              alt="Victor Hugo" 
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <!-- Floating badge -->
+            <div class="absolute top-4 right-4 z-20 bg-blue-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-semibold">
+              Littérature & IA
+            </div>
+            <!-- Name overlay -->
+            <div class="absolute bottom-4 left-4 z-20">
+              <h3 class="text-2xl font-bold text-white mb-1">Victor Hugo</h3>
+              <p class="text-blue-200 text-sm">Auteur des Misérables</p>
+            </div>
           </div>
-          <div class="text-sm text-gray-300 font-medium">
-            Réseaux de Neurones - Chapitre 1
-          </div>
-          <div class="flex items-center space-x-2">
-            <button class="w-6 h-6 text-gray-400 hover:text-white transition-colors">
-              <Icon name="menu" class="w-6 h-6" />
-            </button>
-          </div>
-        </div>
-
-        <!-- Main Player Area -->
-        <div class="relative aspect-video bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center">
           
-          <!-- Neural Network Animation -->
-          <svg class="w-full h-full max-w-md" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="neuralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:0.8" />
-                <stop offset="50%" style="stop-color:#8B5CF6;stop-opacity:0.8" />
-                <stop offset="100%" style="stop-color:#EC4899;stop-opacity:0.8" />
-              </linearGradient>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                <feMerge> 
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-            
-            <!-- Layer 1 Nodes -->
-            <g class="layer-1">
-              <circle cx="50" cy="75" r="8" fill="url(#neuralGrad)" filter="url(#glow)" class="neural-node">
-                <animate attributeName="r" values="8;12;8" dur="3s" repeatCount="indefinite" begin="0s"/>
-                <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite" begin="0s"/>
-              </circle>
-              <circle cx="50" cy="150" r="8" fill="url(#neuralGrad)" filter="url(#glow)" class="neural-node">
-                <animate attributeName="r" values="8;12;8" dur="3s" repeatCount="indefinite" begin="0.5s"/>
-                <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite" begin="0.5s"/>
-              </circle>
-              <circle cx="50" cy="225" r="8" fill="url(#neuralGrad)" filter="url(#glow)" class="neural-node">
-                <animate attributeName="r" values="8;12;8" dur="3s" repeatCount="indefinite" begin="1s"/>
-                <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite" begin="1s"/>
-              </circle>
-            </g>
-
-            <!-- Layer 2 Nodes -->
-            <g class="layer-2">
-              <circle cx="150" cy="60" r="8" fill="url(#neuralGrad)" filter="url(#glow)" class="neural-node">
-                <animate attributeName="r" values="8;12;8" dur="3s" repeatCount="indefinite" begin="1.5s"/>
-                <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite" begin="1.5s"/>
-              </circle>
-              <circle cx="150" cy="120" r="8" fill="url(#neuralGrad)" filter="url(#glow)" class="neural-node">
-                <animate attributeName="r" values="8;12;8" dur="3s" repeatCount="indefinite" begin="2s"/>
-                <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite" begin="2s"/>
-              </circle>
-              <circle cx="150" cy="180" r="8" fill="url(#neuralGrad)" filter="url(#glow)" class="neural-node">
-                <animate attributeName="r" values="8;12;8" dur="3s" repeatCount="indefinite" begin="2.5s"/>
-                <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite" begin="2.5s"/>
-              </circle>
-              <circle cx="150" cy="240" r="8" fill="url(#neuralGrad)" filter="url(#glow)" class="neural-node">
-                <animate attributeName="r" values="8;12;8" dur="3s" repeatCount="indefinite" begin="0.2s"/>
-                <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite" begin="0.2s"/>
-              </circle>
-            </g>
-
-            <!-- Layer 3 Nodes -->
-            <g class="layer-3">
-              <circle cx="250" cy="90" r="8" fill="url(#neuralGrad)" filter="url(#glow)" class="neural-node">
-                <animate attributeName="r" values="8;12;8" dur="3s" repeatCount="indefinite" begin="1.2s"/>
-                <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite" begin="1.2s"/>
-              </circle>
-              <circle cx="250" cy="150" r="8" fill="url(#neuralGrad)" filter="url(#glow)" class="neural-node">
-                <animate attributeName="r" values="8;12;8" dur="3s" repeatCount="indefinite" begin="1.8s"/>
-                <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite" begin="1.8s"/>
-              </circle>
-              <circle cx="250" cy="210" r="8" fill="url(#neuralGrad)" filter="url(#glow)" class="neural-node">
-                <animate attributeName="r" values="8;12;8" dur="3s" repeatCount="indefinite" begin="0.8s"/>
-                <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite" begin="0.8s"/>
-              </circle>
-            </g>
-
-            <!-- Output Layer -->
-            <g class="output-layer">
-              <circle cx="350" cy="150" r="10" fill="url(#neuralGrad)" filter="url(#glow)" class="neural-node">
-                <animate attributeName="r" values="10;15;10" dur="3s" repeatCount="indefinite" begin="2.2s"/>
-                <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite" begin="2.2s"/>
-              </circle>
-            </g>
-
-            <!-- Connections -->
-            <g class="connections" stroke="url(#neuralGrad)" stroke-width="1" fill="none" opacity="0.4">
-              <!-- Layer 1 to Layer 2 -->
-              <line x1="58" y1="75" x2="142" y2="60">
-                <animate attributeName="opacity" values="0.2;0.8;0.2" dur="4s" repeatCount="indefinite" begin="0s"/>
-              </line>
-              <line x1="58" y1="75" x2="142" y2="120">
-                <animate attributeName="opacity" values="0.2;0.8;0.2" dur="4s" repeatCount="indefinite" begin="0.5s"/>
-              </line>
-              <line x1="58" y1="150" x2="142" y2="120">
-                <animate attributeName="opacity" values="0.2;0.8;0.2" dur="4s" repeatCount="indefinite" begin="1s"/>
-              </line>
-              <line x1="58" y1="150" x2="142" y2="180">
-                <animate attributeName="opacity" values="0.2;0.8;0.2" dur="4s" repeatCount="indefinite" begin="1.5s"/>
-              </line>
-              <line x1="58" y1="225" x2="142" y2="180">
-                <animate attributeName="opacity" values="0.2;0.8;0.2" dur="4s" repeatCount="indefinite" begin="2s"/>
-              </line>
-              <line x1="58" y1="225" x2="142" y2="240">
-                <animate attributeName="opacity" values="0.2;0.8;0.2" dur="4s" repeatCount="indefinite" begin="2.5s"/>
-              </line>
-              
-              <!-- Layer 2 to Layer 3 -->
-              <line x1="158" y1="60" x2="242" y2="90">
-                <animate attributeName="opacity" values="0.2;0.8;0.2" dur="4s" repeatCount="indefinite" begin="1s"/>
-              </line>
-              <line x1="158" y1="120" x2="242" y2="90">
-                <animate attributeName="opacity" values="0.2;0.8;0.2" dur="4s" repeatCount="indefinite" begin="1.3s"/>
-              </line>
-              <line x1="158" y1="120" x2="242" y2="150">
-                <animate attributeName="opacity" values="0.2;0.8;0.2" dur="4s" repeatCount="indefinite" begin="1.6s"/>
-              </line>
-              <line x1="158" y1="180" x2="242" y2="150">
-                <animate attributeName="opacity" values="0.2;0.8;0.2" dur="4s" repeatCount="indefinite" begin="1.9s"/>
-              </line>
-              <line x1="158" y1="180" x2="242" y2="210">
-                <animate attributeName="opacity" values="0.2;0.8;0.2" dur="4s" repeatCount="indefinite" begin="2.2s"/>
-              </line>
-              <line x1="158" y1="240" x2="242" y2="210">
-                <animate attributeName="opacity" values="0.2;0.8;0.2" dur="4s" repeatCount="indefinite" begin="2.5s"/>
-              </line>
-              
-              <!-- Layer 3 to Output -->
-              <line x1="258" y1="90" x2="342" y2="150">
-                <animate attributeName="opacity" values="0.2;0.8;0.2" dur="4s" repeatCount="indefinite" begin="2s"/>
-              </line>
-              <line x1="258" y1="150" x2="342" y2="150">
-                <animate attributeName="opacity" values="0.2;0.8;0.2" dur="4s" repeatCount="indefinite" begin="2.3s"/>
-              </line>
-              <line x1="258" y1="210" x2="342" y2="150">
-                <animate attributeName="opacity" values="0.2;0.8;0.2" dur="4s" repeatCount="indefinite" begin="2.6s"/>
-              </line>
-            </g>
-          </svg>
-
-          <!-- Play Button Overlay -->
-          <div class="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 cursor-pointer">
-            <div class="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
-              <Icon name="play" class="w-8 h-8 text-white ml-1" />
+          <!-- Content -->
+          <div class="p-6">
+            <div class="mb-4">
+              <div class="flex items-center space-x-2 mb-3">
+                <div class="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                  <Icon name="pen" class="w-4 h-4 text-blue-400" />
+                </div>
+                <span class="text-blue-400 font-semibold text-sm">Écriture créative</span>
+              </div>
             </div>
+            <p class="text-gray-300 leading-relaxed">
+              Le maître de la littérature française vous enseigne l'art de l'écriture assistée par IA. 
+              <strong class="text-white">Créez du contenu captivant</strong> pour vos campagnes marketing et communications.
+            </p>
           </div>
         </div>
-
-        <!-- Player Controls -->
-        <div class="bg-gray-700 px-6 py-4">
-          <div class="flex items-center space-x-4">
-            <button class="text-white hover:text-blue-400 transition-colors">
-              <Icon name="play" class="w-5 h-5" />
-            </button>
-            
-            <div class="flex-1 bg-gray-600 rounded-full h-2 relative">
-              <div class="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full w-1/3"></div>
-              <div class="absolute top-0 left-1/3 transform -translate-x-1/2 w-4 h-4 bg-white rounded-full -mt-1 shadow-lg"></div>
-            </div>
-            
-            <span class="text-sm text-gray-300">02:34 / 07:42</span>
-            
-            <button class="text-white hover:text-blue-400 transition-colors">
-              <Icon name="progress" class="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-
       </div>
-    </div>
 
+      <!-- Card 2: Marie Curie -->
+      <div class="showcase-card group relative bg-gradient-to-br from-purple-500/5 to-pink-500/5 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-sm transition-all duration-500 hover:border-purple-400/50 hover:shadow-2xl hover:shadow-purple-500/20 hover:-translate-y-2">
+        <div class="showcase-card-content relative">
+          <!-- Image Header with dramatic effect -->
+          <div class="relative h-48 overflow-hidden bg-gradient-to-br from-purple-500/20 to-pink-500/20">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
+            <img 
+              src="/images/illustrations/Marie_Curie.webp" 
+              alt="Marie Curie" 
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <!-- Floating badge -->
+            <div class="absolute top-4 right-4 z-20 bg-purple-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-semibold">
+              Science & Données
+            </div>
+            <!-- Name overlay -->
+            <div class="absolute bottom-4 left-4 z-20">
+              <h3 class="text-2xl font-bold text-white mb-1">Marie Curie</h3>
+              <p class="text-purple-200 text-sm">Prix Nobel de Physique</p>
+            </div>
+          </div>
+          
+          <!-- Content -->
+          <div class="p-6">
+            <div class="mb-4">
+              <div class="flex items-center space-x-2 mb-3">
+                <div class="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                  <Icon name="microscope" class="w-4 h-4 text-purple-400" />
+                </div>
+                <span class="text-purple-400 font-semibold text-sm">Analyse de données</span>
+              </div>
+            </div>
+            <p class="text-gray-300 leading-relaxed">
+              La pionnière de la science moderne vous forme à l'analyse de données avec l'IA. 
+              <strong class="text-white">Transformez vos données</strong> en insights stratégiques pour votre entreprise.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Leonardo da Vinci -->
+      <div class="showcase-card group relative bg-gradient-to-br from-pink-500/5 to-orange-500/5 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-sm transition-all duration-500 hover:border-pink-400/50 hover:shadow-2xl hover:shadow-pink-500/20 hover:-translate-y-2">
+        <div class="showcase-card-content relative">
+          <!-- Image Header with dramatic effect -->
+          <div class="relative h-48 overflow-hidden bg-gradient-to-br from-pink-500/20 to-orange-500/20">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
+            <img 
+              src="/images/illustrations/Leonardo_Da_Vinci.webp" 
+              alt="Leonardo da Vinci" 
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <!-- Floating badge -->
+            <div class="absolute top-4 right-4 z-20 bg-pink-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-semibold">
+              Innovation & Art
+            </div>
+            <!-- Name overlay -->
+            <div class="absolute bottom-4 left-4 z-20">
+              <h3 class="text-2xl font-bold text-white mb-1">Leonardo da Vinci</h3>
+              <p class="text-pink-200 text-sm">Génie de la Renaissance</p>
+            </div>
+          </div>
+          
+          <!-- Content -->
+          <div class="p-6">
+            <div class="mb-4">
+              <div class="flex items-center space-x-2 mb-3">
+                <div class="w-8 h-8 bg-pink-500/20 rounded-lg flex items-center justify-center">
+                  <Icon name="palette" class="w-4 h-4 text-pink-400" />
+                </div>
+                <span class="text-pink-400 font-semibold text-sm">Créativité & Design</span>
+              </div>
+            </div>
+            <p class="text-gray-300 leading-relaxed">
+              L'inventeur universel vous guide dans l'IA créative et l'innovation. 
+              <strong class="text-white">Révolutionnez votre approche</strong> du design et de la résolution de problèmes complexes.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
-<script>
-  import { fadeInUp, scaleIn } from '../utils/animations';
+<style>
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+
+  .showcase-card {
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+  }
+  .showcase-card-content {
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
   
-  // Animations des titres
-  fadeInUp('#showcase-title');
-  fadeInUp('#showcase-subtitle', 0.3);
+  /* Enhanced hover effects for dramatic cards */
+  .showcase-card:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
   
-  // Animation du player vidéo
-  scaleIn('#video-player');
-</script>
+  /* Improved responsive design for dramatic cards */
+  @media (max-width: 768px) {
+    .showcase-card .relative.h-48 {
+      height: 12rem; /* h-48 = 12rem */
+    }
+  }
+</style>
