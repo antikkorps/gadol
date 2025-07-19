@@ -20,42 +20,42 @@ import Icon from './Icon.astro';
       
       <!-- Main CTA Content -->
       <div id="cta-content">
-        <h2 id="cta-title" class="text-5xl md:text-6xl font-bold mb-8 opacity-0 gsap-ready">
-          Prêt à construire
+        <h2 id="cta-title" class="cta-title text-5xl md:text-6xl font-bold mb-8">
+          Prêt à maîtriser
           <span class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-            le futur ?
+            l'IA ?
           </span>
         </h2>
         
-        <p id="cta-subtitle" class="text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed opacity-0 gsap-ready">
-          Rejoignez la révolution de l'apprentissage IA. Soyez parmi les premiers à découvrir 
-          une nouvelle façon de maîtriser les technologies qui façonnent demain.
+        <p id="cta-subtitle" class="cta-subtitle text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+          Rejoignez des milliers de professionnels qui utilisent déjà l'IA pour transformer 
+          leur travail. Victor Hugo et ses collègues vous attendent.
         </p>
 
         <!-- Statistics -->
-        <div id="cta-stats" class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 opacity-0 gsap-ready">
+        <div id="cta-stats" class="cta-stats grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div class="text-center">
             <div class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-2">
-              10K+
+              5K+
             </div>
-            <div class="text-gray-400">Inscriptions en attente</div>
+            <div class="text-gray-400">Professionnels formés</div>
           </div>
           <div class="text-center">
             <div class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
-              95%
+              7j
             </div>
-            <div class="text-gray-400">Taux de satisfaction</div>
+            <div class="text-gray-400">Pour voir les résultats</div>
           </div>
           <div class="text-center">
             <div class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent mb-2">
-              24/7
+              100%
             </div>
-            <div class="text-gray-400">Accès immédiat</div>
+            <div class="text-gray-400">Adapté à votre métier</div>
           </div>
         </div>
 
         <!-- CTA Form -->
-        <div id="cta-form" class="max-w-lg mx-auto opacity-0 gsap-ready">
+        <div id="cta-form" class="cta-form max-w-lg mx-auto">
           <form class="space-y-4">
             <div class="flex flex-col sm:flex-row gap-4">
               <input 
@@ -68,29 +68,29 @@ import Icon from './Icon.astro';
                 type="submit"
                 class="px-10 py-4 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 hover:from-blue-600 hover:via-purple-700 hover:to-pink-700 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl whitespace-nowrap"
               >
-                Commencer maintenant
+                Démarrer ma formation
               </button>
             </div>
             
             <p class="text-sm text-gray-400 mt-4">
-              🔒 Vos données sont protégées. Aucun spam, promis.
+              <Icon name="lock" class="inline w-4 h-4 mr-1" /> Vos données sont protégées. Aucun spam, promis.
             </p>
           </form>
         </div>
 
         <!-- Trust Indicators -->
-        <div id="trust-indicators" class="mt-12 flex flex-wrap justify-center items-center gap-8 opacity-0 gsap-ready">
+        <div id="trust-indicators" class="cta-trust mt-12 flex flex-wrap justify-center items-center gap-8">
           <div class="flex items-center space-x-2 text-gray-400">
-            <Icon name="shield" class="w-5 h-5 text-green-500" />
+            <Icon name="lock" class="w-5 h-5 text-green-500" />
             <span>Sécurisé SSL</span>
           </div>
           <div class="flex items-center space-x-2 text-gray-400">
-            <Icon name="lock" class="w-5 h-5 text-blue-500" />
-            <span>Certifié RGPD</span>
+            <Icon name="target" class="w-5 h-5 text-blue-500" />
+            <span>Certifié Qualité</span>
           </div>
           <div class="flex items-center space-x-2 text-gray-400">
             <Icon name="star" class="w-5 h-5 text-yellow-500" />
-            <span>4.9/5 étoiles</span>
+            <span>Formation reconnue</span>
           </div>
         </div>
 
@@ -99,18 +99,3 @@ import Icon from './Icon.astro';
   </div>
 </section>
 
-<script>
-  import { buttonHoverEffect, createTimeline } from '../utils/animations';
-  
-  // Animation séquentielle du CTA
-  createTimeline('#cta-content', [
-    { selector: '#cta-title', animation: 'scaleIn', delay: 0.5 },
-    { selector: '#cta-subtitle', animation: 'fadeInUp', delay: 0.3 },
-    { selector: '#cta-stats', animation: 'fadeInUp', delay: 0.2 },
-    { selector: '#cta-form', animation: 'scaleIn', delay: 0.1 },
-    { selector: '#trust-indicators', animation: 'fadeInUp', delay: 0.1 }
-  ]);
-  
-  // Effet de hover sur le bouton
-  buttonHoverEffect('#cta-form button[type="submit"]');
-</script>

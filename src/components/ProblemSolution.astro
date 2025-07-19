@@ -3,76 +3,75 @@
 import Icon from './Icon.astro';
 ---
 
-<section class="py-20 bg-gray-800/30">
+<section id="problem-solution" class="py-20 bg-gray-800/30">
   <div class="container mx-auto px-6">
     <div class="grid md:grid-cols-2 gap-16 items-center">
       
       <!-- Le Problème -->
-      <div id="problem-section" class="text-center md:text-left opacity-0 gsap-ready">
+      <div id="problem-section" class="problem-section text-center md:text-left">
         <div class="mb-8">
           <!-- Book Icon -->
           <div class="w-20 h-20 mx-auto md:mx-0 mb-6 bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl flex items-center justify-center transform rotate-3">
-            <Icon name="book" class="w-10 h-10 text-white" />
+            <Icon name="warning" class="w-10 h-10 text-white" />
           </div>
         </div>
         
         <h2 class="text-4xl font-bold mb-6 text-red-400">
-          La formation traditionnelle est dépassée.
+          L'IA vous intimide ?
         </h2>
         
         <p class="text-lg text-gray-300 leading-relaxed">
-          Les vidéos passives de 2 heures, les PDF poussiéreux et les quiz basiques ne suffisent plus. 
-          Votre cerveau mérite mieux que ces méthodes d'apprentissage obsolètes qui vous endorment 
-          plus qu'elles ne vous forment.
+          Vous savez que l'IA va transformer votre secteur, mais vous ne savez pas par où commencer. 
+          Les tutoriels techniques sont trop complexes, les formations génériques ne collent pas à votre réalité métier.
         </p>
         
         <div class="mt-6 space-y-3">
           <div class="flex items-center text-gray-400">
             <span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
-            <span>Contenu statique et ennuyeux</span>
+            <span>Formations trop techniques ou trop générales</span>
           </div>
           <div class="flex items-center text-gray-400">
             <span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
-            <span>Aucune interaction ni feedback</span>
+            <span>Pas d'application concrète à votre métier</span>
           </div>
           <div class="flex items-center text-gray-400">
             <span class="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
-            <span>Progression linéaire et rigide</span>
+            <span>Manque de temps et d'accompagnement</span>
           </div>
         </div>
       </div>
       
       <!-- La Solution -->
-      <div id="solution-section" class="text-center md:text-left opacity-0 gsap-ready">
+      <div id="solution-section" class="solution-section text-center md:text-left">
         <div class="mb-8">
           <!-- Rocket Icon -->
           <div class="w-20 h-20 mx-auto md:mx-0 mb-6 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center transform -rotate-3">
-            <Icon name="rocket" class="w-10 h-10 text-white" />
+            <Icon name="sparkles" class="w-10 h-10 text-white" />
           </div>
         </div>
         
         <h2 class="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-          Une révolution pédagogique.
+          Des mentors d'exception.
         </h2>
         
         <p class="text-lg text-gray-300 leading-relaxed">
-          Gadol réinvente l'apprentissage avec des contenus visuels immersifs, 
-          une intelligence artificielle qui s'adapte à votre rythme, et une interactivité 
-          qui transforme chaque concept complexe en moment de découverte captivant.
+          Gadol vous forme avec les plus grands esprits de l'Histoire, animés par l'IA. 
+          Victor Hugo vous enseigne l'écriture IA, Marie Curie l'analyse de données, 
+          da Vinci la créativité... Une formation adaptée à VOTRE contexte professionnel.
         </p>
         
         <div class="mt-6 space-y-3">
           <div class="flex items-center text-gray-300">
             <span class="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-3"></span>
-            <span>Animations et visuels époustouflants</span>
+            <span>Personnages historiques comme formateurs</span>
           </div>
           <div class="flex items-center text-gray-300">
             <span class="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-3"></span>
-            <span>IA adaptative et personnalisée</span>
+            <span>Formation adaptée à votre secteur</span>
           </div>
           <div class="flex items-center text-gray-300">
             <span class="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-3"></span>
-            <span>Expérience interactive immersive</span>
+            <span>Résultats dès la première semaine</span>
           </div>
         </div>
       </div>
@@ -81,10 +80,3 @@ import Icon from './Icon.astro';
   </div>
 </section>
 
-<script>
-  import { fadeInLeft, fadeInRight } from '../utils/animations';
-  
-  // Animations des sections problème et solution
-  fadeInLeft('#problem-section');
-  fadeInRight('#solution-section');
-</script>
